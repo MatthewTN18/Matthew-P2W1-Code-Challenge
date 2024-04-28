@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import TransactionTable from './components/TransactionTable';
 import TransactionForm from './components/TransactionForm';
@@ -27,7 +26,7 @@ const App = () => {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
         } else {
             setSortBy(criteria);
-            setSortOrder('asc');
+            setSortOrder('asc');  // Reset sortOrder to 'asc' when a new criteria is selected
         }
     };
 
@@ -52,6 +51,10 @@ const App = () => {
             <h1>Bank Transactions</h1>
             <TransactionForm onSubmit={handleAddTransaction} />
             <SearchBar onSearch={handleSearch} />
+            <div>
+                <button onClick={() => handleSort('description')}>Sort by Description</button>
+                <button onClick={() => handleSort('category')}>Sort by Category</button>
+            </div>
             <TransactionTable transactions={sortedTransactions()} />
         </div>
     );
